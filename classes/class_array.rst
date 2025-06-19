@@ -751,11 +751,19 @@ The ``method`` receives one of the array elements as an argument, and should ret
     func is_even(number):
         return number % 2 == 0
 
+    func is_object_value_above(object, number):
+        return object.value > number
+
     func _ready():
         print([1, 4, 5, 8].filter(is_even)) # Prints [4, 8]
 
         # Same as above, but using a lambda function.
         print([1, 4, 5, 8].filter(func(number): return number % 2 == 0))
+
+        # When using a callable as a filter, the first argument will be the array element.
+        # Further arguments can be bound to the callable.
+        print([example_object_a, example_object_b].filter(is_object_value_above.bind(4)))
+
 
 See also :ref:`any()<class_Array_method_any>`, :ref:`all()<class_Array_method_all>`, :ref:`map()<class_Array_method_map>` and :ref:`reduce()<class_Array_method_reduce>`.
 
